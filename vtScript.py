@@ -13,14 +13,14 @@ def parse_params():
          str: The file's md5 or sha256 hash
     """
     parser = argparse.ArgumentParser(description="Obtains TotalVirus analysis of a file based on md5 or sha256 key")
-    parser.add_argument("-a", "--api-key", default="", help="User's TotalVirus API key", required=True)
-    parser.add_argument("-r", "--resource-type", default="",
+    parser.add_argument("-a", "--api-key", "--api_key", default="", help="User's TotalVirus API key", required=True)
+    parser.add_argument("-r", "--resource-type", "--resource_type", default="",
                         help="Type of file hash - either md5 or sha256", required=False)
     parser.add_argument("-s", "--hash", default="", help="The md5 or sha256 hash of the file to test", required=True)
 
     args = parser.parse_args()
 
-    return args.api_key, args.resource_type, args.hash
+    return str(args.api_key), str(args.resource_type), str(args.hash)
 
 
 def request_file_scan_report(api_key, resource_type, hash_key):
